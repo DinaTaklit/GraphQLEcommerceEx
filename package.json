@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "nodemon index"
+  },
   "type": "module",
   "dependencies": {
     "@apollo/server": "^4.7.5",
