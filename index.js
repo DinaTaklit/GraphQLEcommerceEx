@@ -68,7 +68,7 @@ type Product{
   image: String!
   price: Float!
   onSale: Boolean!
-  categoryId: ID!
+  category: Category!
 }
 
 type Category{
@@ -94,6 +94,10 @@ const resolvers = {
   Category: {
     products: ({ id: categoryId }, args, context) =>
       products.filter((product) => product.categoryId === categoryId),
+  },
+  Product: {
+    category: ({ categoryId }, args, context) =>
+      categories.find((category) => category.id === categoryId),
   },
 };
 
