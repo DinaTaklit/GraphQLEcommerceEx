@@ -51,6 +51,7 @@ const typeDefs = `#graphql
 type Query{
     helloWorld: String
     categories: [Category!]!
+    category(id:ID!): Category
     products: [Product!]!
     product(id:ID!): Product
 }
@@ -77,6 +78,8 @@ const resolvers = {
   Query: {
     helloWorld: () => "Hello World",
     categories: () => categories,
+    category: (parent, { id }, context) =>
+      categories.find((category) => category.id === id),
     products: () => products,
     product: (parent, args, context) => {
       const { id } = args;
