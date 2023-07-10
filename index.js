@@ -4,7 +4,7 @@ import typeDefs from "./schema";
 import Query from "./resolvers/Query";
 import Category from "./resolvers/Category";
 import Product from "./resolvers/Product";
-import { categories, products } from "./db";
+import { categories, products, reviews } from "./db";
 
 const server = new ApolloServer({
   typeDefs,
@@ -20,6 +20,7 @@ const { url } = await startStandaloneServer(server, {
   context: () => ({
     categories,
     products,
+    reviews,
   }),
 });
 console.log(`Server listening at: ${url}`);
