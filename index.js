@@ -6,28 +6,31 @@ const products = [
     id: "53a0724c-a416-4cac-ae45-bfaedce1f147",
     name: "Steel Pot",
     description: "Silver steel pot that is perfect for cooking",
-    image: "imgage1",
     quantity: 230,
     price: 42.44,
+    image: "img-1",
     onSale: false,
+    categoryId: "c01b1ff4-f894-4ef2-b27a-22aacc2fca70",
   },
   {
     id: "c2af9adc-d0b8-4d44-871f-cef66f86f7f6",
     name: "Salad Bowl",
     description: "Round wooden bowl perfect for tossing and making salads",
     quantity: 33,
-    image: "imgage2",
     price: 53.5,
+    image: "img-2",
     onSale: false,
+    categoryId: "c01b1ff4-f894-4ef2-b27a-22aacc2fca70",
   },
   {
     id: "2c931e7e-510f-49e5-aed6-d6b44087e5a1",
     name: "Spoon",
     description: "Small and delicate spoon",
-    image: "imgage3",
     quantity: 4266,
     price: 1.33,
+    image: "img-3",
     onSale: true,
+    categoryId: "c01b1ff4-f894-4ef2-b27a-22aacc2fca70",
   },
 ];
 
@@ -65,11 +68,13 @@ type Product{
   image: String!
   price: Float!
   onSale: Boolean!
+  categoryId: ID!
 }
 
 type Category{
   id: ID!
   name: String!
+  products: [Product!]!
 }
 
 `;
@@ -85,6 +90,10 @@ const resolvers = {
       const { id } = args;
       return products.find((product) => product.id === id);
     },
+  },
+  Category: {
+    products: ({ id: categoryId }, args, context) =>
+      products.filter((product) => product.categoryId === categoryId),
   },
 };
 
