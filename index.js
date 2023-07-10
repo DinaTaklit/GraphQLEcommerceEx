@@ -2,32 +2,17 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import typeDefs from "./schema";
 import { products, categories } from "./db";
-
-const resolvers = {
-  Query: {
-    helloWorld: () => "Hello World",
-    categories: () => categories,
-    category: (parent, { id }, context) =>
-      categories.find((category) => category.id === id),
-    products: () => products,
-    product: (parent, args, context) => {
-      const { id } = args;
-      return products.find((product) => product.id === id);
-    },
-  },
-  Category: {
-    products: ({ id: categoryId }, args, context) =>
-      products.filter((product) => product.categoryId === categoryId),
-  },
-  Product: {
-    category: ({ categoryId }, args, context) =>
-      categories.find((category) => category.id === categoryId),
-  },
-};
+import Query from "./resolvers/Query";
+import Category from "./resolvers/Category";
+import Product from "./resolvers/Product";
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: {
+    Query,
+    Category,
+    Product,
+  },
 });
 
 const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
