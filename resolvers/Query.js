@@ -3,7 +3,13 @@ const Query = {
   categories: (parent, args, { categories }) => categories,
   category: (parent, { id }, { categories }) =>
     categories.find((category) => category.id === id),
-  products: (parent, args, { products }) => products,
+  products: (parent, { filter }, { products }) => {
+    const { onSale } = filter;
+    if (onSale) {
+      return products.filter((product) => product.onSale);
+    }
+    return products;
+  },
   product: (parent, { id }, { products }) =>
     products.find((product) => product.id === id),
 };
