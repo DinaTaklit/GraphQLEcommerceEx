@@ -1,7 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import typeDefs from "./schema";
-import { products, categories } from "./db";
 import Query from "./resolvers/Query";
 import Category from "./resolvers/Category";
 import Product from "./resolvers/Product";
