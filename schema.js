@@ -18,6 +18,7 @@ type Product{
   price: Float!
   onSale: Boolean!
   category: Category!
+  reviews: [Review!]!
 }
 
 type Category{
@@ -26,6 +27,13 @@ type Category{
   products: [Product!]!
 }
 
+type Review {
+  id: ID!
+  date: String!
+  title: String!
+  comment: String!
+  rating: Int!
+}
 `;
 
 export default typeDefs;
