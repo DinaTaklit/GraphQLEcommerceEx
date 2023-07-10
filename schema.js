@@ -4,7 +4,7 @@ type Query{
     helloWorld: String
     categories: [Category!]!
     category(id:ID!): Category
-    products: [Product!]!
+    products(filter: productFilterInput): [Product!]!
     product(id:ID!): Product
 }
 
@@ -33,6 +33,10 @@ type Review {
   title: String!
   comment: String!
   rating: Int!
+}
+
+input productFilterInput {
+  onSale: Boolean!
 }
 `;
 
