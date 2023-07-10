@@ -1,6 +1,5 @@
-import { categories } from "../db";
 const Product = {
-  category: ({ categoryId }, args, context) =>
+  category: ({ categoryId }, args, { categories }) =>
     categories.find((category) => category.id === categoryId),
 };
 export default Product;

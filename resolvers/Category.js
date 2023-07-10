@@ -1,6 +1,5 @@
-import { products } from "../db";
 const Category = {
-  products: ({ id: categoryId }, args, context) =>
+  products: ({ id: categoryId }, args, { products }) =>
     products.filter((product) => product.categoryId === categoryId),
 };
 
