@@ -24,7 +24,7 @@ type Product{
 type Category{
   id: ID!
   name: String!
-  products: [Product!]!
+  products(filter: productFilterInput): [Product!]!
 }
 
 type Review {
