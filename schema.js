@@ -8,6 +8,10 @@ type Query{
     product(id:ID!): Product
 }
 
+type Mutation {
+  addCategory(input: addCategoryInput!): Category!
+}
+
 #Define a product type definition 
 type Product{
   id: ID!
@@ -38,6 +42,10 @@ type Review {
 input productFilterInput {
   onSale: Boolean
   avgRating: Int
+}
+
+input addCategoryInput {
+  name: String!
 }
 `;
 
