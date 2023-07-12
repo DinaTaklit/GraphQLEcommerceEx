@@ -36,7 +36,8 @@ type Review {
 }
 
 input productFilterInput {
-  onSale: Boolean!
+  onSale: Boolean
+  avgRating: Int
 }
 `;
 
