@@ -1,12 +1,29 @@
 const Category = {
-  products: ({ id: categoryId }, { filter }, { products }) => {
-    const { onSale } = filter;
-    const filteredProducts = products.filter(
+  products: ({ id: categoryId }, { filter }, { products, reviews }) => {
+    const { onSale, avgRating } = filter;
+    let filteredProducts = products.filter(
       (product) => product.categoryId === categoryId
     );
     if (onSale) {
-      return filteredProducts.filter((product) => product.onSale);
+      filteredProducts = filteredProducts.filter((product) => product.onSale);
     }
+    if ([1, 2, 3, 4, 5].includes(avgRating)) {
+      filteredProducts = filteredProducts.filter((product) => {
+        let numberOfRatingsPerProduct = 0;
+        let productAvgRating = reviews.reduce((acc, current) => {
+          if (current.productId === product.id) {
+            numberOfRatingsPerProduct++;
+            return acc + current.rating;
+          }
+          return acc;
+        }, 0);
+        if (numberOfRatingsPerProduct) {
+          productAvgRating = productAvgRating / numberOfRatingsPerProduct;
+        }
+        return productAvgRating >= avgRating;
+      });
+    }
+
     return filteredProducts;
   },
 };
