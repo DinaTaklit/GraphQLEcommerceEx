@@ -10,6 +10,7 @@ type Query{
 
 type Mutation {
   addCategory(input: addCategoryInput!): Category!
+  addProduct(input: addProductInput!): Product!
 }
 
 #Define a product type definition 
@@ -46,6 +47,16 @@ input productFilterInput {
 
 input addCategoryInput {
   name: String!
+}
+
+input addProductInput{
+  name: String!
+  description: String!
+  quantity: Int!
+  image: String!
+  price: Float!
+  onSale: Boolean!
+  categoryId: ID! 
 }
 `;
 
