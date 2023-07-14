@@ -65,6 +65,11 @@ const Mutation = {
     db.reviews = db.reviews.filter((review) => review.productId !== productId);
     return productId;
   },
+
+  deleteReview: (parent, { id: reviewId }, { db }) => {
+    db.reviews = db.reviews.filter((review) => review.id !== reviewId);
+    return reviewId;
+  },
 };
 
 export default Mutation;
