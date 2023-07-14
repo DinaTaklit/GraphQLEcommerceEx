@@ -70,6 +70,18 @@ const Mutation = {
     db.reviews = db.reviews.filter((review) => review.id !== reviewId);
     return reviewId;
   },
+
+  updateCategory: (parent, { id: categoryId, input }, { db }) => {
+    const categoryIndex = db.categories.findIndex(
+      (category) => category.id === categoryId
+    );
+    const updatedCategoy = {
+      ...db.categories[categoryIndex],
+      ...input,
+    };
+    db.categories[categoryIndex] = updatedCategoy;
+    return updatedCategoy;
+  },
 };
 
 export default Mutation;

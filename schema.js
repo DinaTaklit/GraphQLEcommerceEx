@@ -15,6 +15,7 @@ type Mutation {
   deleteCategory(id: ID!): ID!
   deleteProduct(id: ID!): ID!
   deleteReview(id: ID!): ID!
+  updateCategory(id:ID!,input: updateCategoryInput!): Category!
 }
 
 #Define a product type definition 
@@ -50,6 +51,9 @@ input productFilterInput {
 }
 
 input addCategoryInput {
+  name: String!
+}
+input updateCategoryInput {
   name: String!
 }
 
