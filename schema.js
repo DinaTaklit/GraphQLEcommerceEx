@@ -12,6 +12,7 @@ type Mutation {
   addCategory(input: addCategoryInput!): Category!
   addProduct(input: addProductInput!): Product!
   addReview(input: addReviewInput!): Review!
+  deleteCategory(id: ID!): ID!
 }
 
 #Define a product type definition 
@@ -23,7 +24,7 @@ type Product{
   image: String!
   price: Float!
   onSale: Boolean!
-  category: Category!
+  category: Category
   reviews: [Review!]!
 }
 

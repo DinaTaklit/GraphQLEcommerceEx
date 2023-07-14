@@ -1,17 +1,17 @@
 import { v4 as uuidv4 } from "uuid";
 
 const Mutation = {
-  addCategory: (parent, { input }, { categories }) => {
+  addCategory: (parent, { input }, { db }) => {
     const { name } = input;
     const newCategory = {
       id: uuidv4(),
       name: name,
     };
-    categories.push(newCategory);
+    db.categories.push(newCategory);
     return newCategory;
   },
 
-  addProduct: (parent, { input }, { products }) => {
+  addProduct: (parent, { input }, { db }) => {
     const { name, description, quantity, image, price, onSale, categoryId } =
       input;
     const newProduct = {
@@ -24,11 +24,11 @@ const Mutation = {
       onSale,
       categoryId,
     };
-    products.push(newProduct);
+    db.products.push(newProduct);
     return newProduct;
   },
 
-  addReview: (parent, { input }, { reviews }) => {
+  addReview: (parent, { input }, { db }) => {
     const { date, title, comment, rating, productId } = input;
     const newReview = {
       id: uuidv4(),
@@ -38,8 +38,25 @@ const Mutation = {
       rating,
       productId,
     };
-    reviews.push(newReview);
+    db.reviews.push(newReview);
     return newReview;
+  },
+
+  deleteCategory: (parent, { id: categoryId }, { db }) => {
+    db.categories = db.categories.filter(
+      (category) => category.id !== categoryId
+    );
+    // Turn categoryId to null for products that belongs to this category
+    db.products = db.products.map((product) => {
+      if (product.categoryId === categoryId) {
+        return {
+          ...product,
+          categoryId: null,
+        };
+      }
+      return product;
+    });
+    return categoryId;
   },
 };
 
