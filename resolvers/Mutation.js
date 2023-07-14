@@ -58,6 +58,13 @@ const Mutation = {
     });
     return categoryId;
   },
+
+  deleteProduct: (parent, { id: productId }, { db }) => {
+    db.products = db.products.filter((product) => product.id !== productId);
+    // delete also its reviews
+    db.reviews = db.reviews.filter((review) => review.productId !== productId);
+    return productId;
+  },
 };
 
 export default Mutation;

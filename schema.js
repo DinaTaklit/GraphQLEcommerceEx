@@ -13,6 +13,7 @@ type Mutation {
   addProduct(input: addProductInput!): Product!
   addReview(input: addReviewInput!): Review!
   deleteCategory(id: ID!): ID!
+  deleteProduct(id: ID!): ID!
 }
 
 #Define a product type definition 
