@@ -1,7 +1,7 @@
 const Category = {
-  products: ({ id: categoryId }, { filter }, { products, reviews }) => {
+  products: ({ id: categoryId }, { filter }, { db }) => {
     const { onSale, avgRating } = filter;
-    let filteredProducts = products.filter(
+    let filteredProducts = db.products.filter(
       (product) => product.categoryId === categoryId
     );
     if (onSale) {
@@ -10,7 +10,7 @@ const Category = {
     if ([1, 2, 3, 4, 5].includes(avgRating)) {
       filteredProducts = filteredProducts.filter((product) => {
         let numberOfRatingsPerProduct = 0;
-        let productAvgRating = reviews.reduce((acc, current) => {
+        let productAvgRating = db.reviews.reduce((acc, current) => {
           if (current.productId === product.id) {
             numberOfRatingsPerProduct++;
             return acc + current.rating;
