@@ -17,6 +17,7 @@ type Mutation {
   deleteReview(id: ID!): ID!
   updateCategory(id:ID!,input: updateCategoryInput!): Category!
   updateProduct(id:ID!,input: updateProductInput!): Product!
+  updateReview(id:ID!,input: updateReviewInput!): Review!
 }
 
 #Define a product type definition 
@@ -84,6 +85,13 @@ input addReviewInput{
     comment: String!,
     rating: Int!,
     productId: ID!
+}
+input updateReviewInput{
+    date: String,
+    title: String,
+    comment: String,
+    rating: Int,
+    productId: ID
 }
 `;
 

@@ -94,6 +94,18 @@ const Mutation = {
     db.products[productIndex] = updatedProduct;
     return updatedProduct;
   },
+
+  updateReview: (parent, { id: reviewId, input }, { db }) => {
+    const reviewIndex = db.reviews.findIndex(
+      (review) => review.id === reviewId
+    );
+    const updatedReview = {
+      ...db.reviews[reviewIndex],
+      ...input,
+    };
+    db.reviews[reviewIndex] = updatedReview;
+    return updatedReview;
+  },
 };
 
 export default Mutation;
