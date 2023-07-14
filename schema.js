@@ -15,9 +15,9 @@ type Mutation {
   deleteCategory(id: ID!): ID!
   deleteProduct(id: ID!): ID!
   deleteReview(id: ID!): ID!
-  updateCategory(id:ID!,input: updateCategoryInput!): Category!
-  updateProduct(id:ID!,input: updateProductInput!): Product!
-  updateReview(id:ID!,input: updateReviewInput!): Review!
+  updateCategory(id:ID!,input: updateCategoryInput!): Category
+  updateProduct(id:ID!,input: updateProductInput!): Product
+  updateReview(id:ID!,input: updateReviewInput!): Review
 }
 
 #Define a product type definition 

@@ -75,6 +75,9 @@ const Mutation = {
     const categoryIndex = db.categories.findIndex(
       (category) => category.id === categoryId
     );
+    if (categoryIndex === -1) {
+      return null;
+    }
     const updatedCategoy = {
       ...db.categories[categoryIndex],
       ...input,
@@ -87,6 +90,9 @@ const Mutation = {
     const productIndex = db.products.findIndex(
       (product) => product.id === productId
     );
+    if (productIndex === -1) {
+      return null;
+    }
     const updatedProduct = {
       ...db.products[productIndex],
       ...input,
@@ -99,6 +105,9 @@ const Mutation = {
     const reviewIndex = db.reviews.findIndex(
       (review) => review.id === reviewId
     );
+    if (reviewIndex === -1) {
+      return null;
+    }
     const updatedReview = {
       ...db.reviews[reviewIndex],
       ...input,
