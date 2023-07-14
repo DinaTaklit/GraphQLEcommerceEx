@@ -16,6 +16,7 @@ type Mutation {
   deleteProduct(id: ID!): ID!
   deleteReview(id: ID!): ID!
   updateCategory(id:ID!,input: updateCategoryInput!): Category!
+  updateProduct(id:ID!,input: updateProductInput!): Product!
 }
 
 #Define a product type definition 
@@ -66,6 +67,17 @@ input addProductInput{
   onSale: Boolean!
   categoryId: ID! 
 }
+
+input updateProductInput{
+  name: String
+  description: String
+  quantity: Int
+  image: String
+  price: Float
+  onSale: Boolean
+  categoryId: ID
+}
+
 input addReviewInput{
     date: String!,
     title: String!,

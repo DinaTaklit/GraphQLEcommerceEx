@@ -82,6 +82,18 @@ const Mutation = {
     db.categories[categoryIndex] = updatedCategoy;
     return updatedCategoy;
   },
+
+  updateProduct: (parent, { id: productId, input }, { db }) => {
+    const productIndex = db.products.findIndex(
+      (product) => product.id === productId
+    );
+    const updatedProduct = {
+      ...db.products[productIndex],
+      ...input,
+    };
+    db.products[productIndex] = updatedProduct;
+    return updatedProduct;
+  },
 };
 
 export default Mutation;
